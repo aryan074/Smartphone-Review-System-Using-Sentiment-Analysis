@@ -1,0 +1,123 @@
+/* ===== GENERAL ===== */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h4, h5 {
+  font-weight: 600;
+  color: #111;
+}
+
+/* ===== NAVBAR ===== */
+.bg-gradient {
+  background: linear-gradient(90deg, #007bff, #6610f2);
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  color: #fff !important;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  background: linear-gradient(120deg, #007bff, #6610f2);
+  color: #fff;
+  border-radius: 0 0 40px 40px;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  height: 280px;
+  object-fit: cover;
+  transition: 0.3s ease-in-out;
+}
+
+.product-card img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BUTTONS ===== */
+.btn-gradient {
+  background: linear-gradient(45deg, #007bff, #6610f2);
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* ===== STARS ===== */
+.stars {
+  color: #f5c518;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+/* ===== REVIEW CARD ===== */
+.review-card {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.review-text {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background-color: #f1f1f1;
+  margin-top: 50px;
+  font-size: 0.9rem;
+}
+
+/* ===== DARK MODE ===== */
+.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+.dark-mode .card,
+.dark-mode .review-card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.dark-mode .navbar {
+  background: linear-gradient(90deg, #333, #111);
+}
+
+.dark-mode .hero-section {
+  background: linear-gradient(120deg, #222, #000);
+}
+
+.dark-mode .footer {
+  background-color: #1a1a1a;
+  color: #ccc;
+}
+
+.dark-mode .btn-gradient {
+  background: linear-gradient(45deg, #8a2be2, #00b4db);
+}
+.navbar-brand {
+  color: #4eb6ce !important;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}

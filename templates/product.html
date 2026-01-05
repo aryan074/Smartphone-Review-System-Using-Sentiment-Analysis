@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ product.name }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold gradient-text" href="{{ url_for('home') }}">📱 SmartReview</a>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <a href="{{ url_for('home') }}" class="btn btn-outline-secondary mb-4 rounded-pill px-4">← Back</a>
+    
+    <div class="row g-5 align-items-center">
+      <div class="col-md-5 text-center">
+        <img src="{{ product.image_url }}" class="img-fluid rounded-4 shadow-sm" alt="{{ product.name }}">
+      </div>
+      <div class="col-md-7">
+        <h2 class="fw-bold">{{ product.name }}</h2>
+        <p class="text-muted">{{ product.description }}</p>
+        <h4 class="text-success">{{ product.price }}</h4>
+
+        {% if avg_rating %}
+        <div class="rating-display mt-3">
+          <span class="stars">
+            {% for i in range(1,6) %}
+              {% if i <= avg_rating %}
+                ★
+              {% elif i - 0.5 <= avg_rating %}
+                <span style="opacity:0.5;">★</span>
+              {% else %}
+                ☆
+              {% endif %}
+            {% endfor %}
+          </span>
+          <strong>{{ avg_rating }}/5</strong>
+        </div>
+        {% endif %}
+
+        <hr>
+        <h5 class="fw-semibold mb-3">💬 Leave a Review</h5>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, msg in messages %}
+              <div class="alert alert-{{ category }} mt-2">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form method="POST">
+          <textarea name="review" class="form-control rounded-3 mb-3 shadow-sm" placeholder="Write your review..." rows="3"></textarea>
+          <button type="submit" class="btn btn-gradient rounded-pill px-4">Submit Review</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="my-5">
+    <h4 id="reviews" class="fw-bold mb-3">Customer Reviews</h4>
+
+    {% if reviews %}
+      {% for review in reviews|reverse %}
+      <div class="card review-card my-3 shadow-sm border-0">
+        <div class="card-body">
+          <p class="review-text">{{ review.text }}</p>
+          <p class="mb-1 small">
+            Sentiment: 
+            <span class="badge 
+              {% if review.sentiment == 'Positive' %} bg-success 
+              {% elif review.sentiment == 'Negative' %} bg-danger 
+              {% else %} bg-secondary {% endif %}">
+              {{ review.sentiment }}
+            </span>
+            | Rating:
+            <span class="stars">
+              {% for i in range(1,6) %}
+                {% if i <= review.rating %}
+                  ★
+                {% else %}
+                  ☆
+                {% endif %}
+              {% endfor %}
+            </span>
+            ({{ review.rating }}/5)
+          </p>
+          <small class="text-muted">{{ review.timestamp }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted">No reviews yet. Be the first to share your thoughts!</p>
+    {% endif %}
+  </div>
+
+  <footer class="footer text-center text-muted py-3">
+    <small>© 2025 SmartReview | Designed by Team Vector Force🔥</small>
+  </footer>
+</body>
+</html>
